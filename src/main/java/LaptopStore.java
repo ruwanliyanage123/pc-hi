@@ -66,7 +66,18 @@ public class LaptopStore implements DeviceStore<Laptop> {
     }
 
     public void delete(Laptop laptop) {
-        //deletion logic
+        Connection connection = null;
+        try {
+            connection = DatabaseManager.getInstance().getConnection();
+            String query = "DELETE FROM " + SQLCommon.LAPTOP_STORE_TABLE + " WHERE serial_number='" + laptop.getSerialNumber() + "'";
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+        } catch (SQLException e) {
+            log.error("SQLException occurring when reading the laptop from laptop store", e);
+        } finally {
+            String message = "Unable to close database connection when try with the reading a laptop";
+            closeConnection(connection, message);
+        }
     }
 
     private void closeConnection(Connection connection, String message) {

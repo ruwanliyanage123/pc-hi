@@ -43,4 +43,10 @@ public class LaptopStoreTest extends DatabaseTableReadHelper {
         laptopStore.update(laptop);
     }
 
+    @Test
+    public void deleteLaptop() {
+        final Laptop laptop = new Laptop("HP", "D-502", "DELLAPTOPS2001");
+        laptopStore.delete(laptop);
+    }
+
 }
