@@ -1,5 +1,6 @@
 package persistance;
 
+import database.DatabaseManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

@@ -1,5 +1,7 @@
 package persistance;
 
+import database.DatabaseManager;
+import database.LaptopDeviceQueryExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

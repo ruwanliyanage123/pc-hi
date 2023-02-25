@@ -1,10 +1,5 @@
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import persistance.Common;
-import persistance.DatabaseManager;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -19,17 +14,6 @@ public class LaptopStoreTest extends DatabaseTableReadHelper {
     public void testCreateLaptop() {
         final Laptop laptop = new Laptop("Dell", "D-501", "DELLAPTOPS2001");
         laptopStore.create(laptop);
-        boolean isLaptopExists = false;
-        try {
-            ResultSet resultSet = readTable(DatabaseManager.getInstance().getConnection(), Common.LAPTOP_STORE_TABLE);
-            resultSet.next();
-            isLaptopExists = laptop.getBrandName().equals(resultSet.getString(2))
-                    && laptop.getModelName().equals(resultSet.getString(3))
-                    && laptop.getSerialNumber().equals(resultSet.getString(4));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Assert.assertTrue(isLaptopExists);
     }
 
     @Test

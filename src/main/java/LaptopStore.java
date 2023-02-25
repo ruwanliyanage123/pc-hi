@@ -1,6 +1,8 @@
+import common.SQLCommon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import persistance.DatabaseManager;
+import database.DatabaseManager;
+import persistance.DeviceStore;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
