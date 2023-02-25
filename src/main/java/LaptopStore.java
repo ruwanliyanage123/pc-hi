@@ -51,7 +51,18 @@ public class LaptopStore implements DeviceStore<Laptop> {
     }
 
     public void update(Laptop laptop) {
-        //updating logic
+        Connection connection = null;
+        try {
+            connection = DatabaseManager.getInstance().getConnection();
+            String query = "UPDATE " + SQLCommon.LAPTOP_STORE_TABLE + " SET brand_name='" + laptop.getBrandName() + "',model_name='" + laptop.getModelName() + "',serial_number='" + laptop.getSerialNumber() + "' WHERE serial_number='" + laptop.getSerialNumber()+"'";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            log.error("SQLException occurring when reading the laptop from laptop store", e);
+        } finally {
+            String message = "Unable to close database connection when try with the reading a laptop";
+            closeConnection(connection, message);
+        }
     }
 
     public void delete(Laptop laptop) {

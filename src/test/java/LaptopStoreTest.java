@@ -36,4 +36,11 @@ public class LaptopStoreTest extends DatabaseTableReadHelper {
             System.out.println(stringBuilder);
         });
     }
+
+    @Test
+    public void updateLaptop() {
+        final Laptop laptop = new Laptop("HP", "D-502", "DELLAPTOPS2001");
+        laptopStore.update(laptop);
+    }
+
 }
