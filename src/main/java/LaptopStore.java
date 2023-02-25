@@ -1,99 +1,25 @@
-import common.SQLCommon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import database.DatabaseManager;
 import persistance.DeviceStore;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LaptopStore implements DeviceStore<Laptop> {
     private final Logger log = LoggerFactory.getLogger(LaptopStore.class);
 
     public void create(Laptop laptop) {
-        Connection connection = null;
-        try {
-            final String insertQuery = "INSERT INTO " + SQLCommon.LAPTOP_STORE_TABLE + " (brand_name, model_name, serial_number) VALUES (?, ?, ?)";
-            connection = DatabaseManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
-            preparedStatement.setString(1, laptop.getBrandName());
-            preparedStatement.setString(2, laptop.getModelName());
-            preparedStatement.setString(3, laptop.getSerialNumber());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            log.error("SQLException occurring when creating the laptop in laptop store", e);
-        } finally {
-            String message = "Unable to close database connection when try with the creating a laptop";
-            closeConnection(connection, message);
-        }
+
     }
 
     public List<Laptop> read() {
-        Connection connection = null;
-        final List<Laptop> laptops = new ArrayList<>();
-        try {
-            connection = DatabaseManager.getInstance().getConnection();
-            String query = "SELECT * FROM " + SQLCommon.LAPTOP_STORE_TABLE;
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
-                String brand_name = resultSet.getString(2);
-                String model_name = resultSet.getString(3);
-                String serial_number = resultSet.getString(4);
-                laptops.add(new Laptop(brand_name,model_name, serial_number));
-            }
-        } catch (SQLException e) {
-            log.error("SQLException occurring when reading the laptop from laptop store", e);
-        } finally {
-            String message = "Unable to close database connection when try with the reading a laptop";
-            closeConnection(connection, message);
-        }
-        return laptops;
+        return null;
     }
 
     public void update(Laptop laptop) {
-        Connection connection = null;
-        try {
-            connection = DatabaseManager.getInstance().getConnection();
-            String query = "UPDATE " + SQLCommon.LAPTOP_STORE_TABLE + " SET brand_name='" + laptop.getBrandName() + "',model_name='" + laptop.getModelName() + "',serial_number='" + laptop.getSerialNumber() + "' WHERE serial_number='" + laptop.getSerialNumber()+"'";
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(query);
-        } catch (SQLException e) {
-            log.error("SQLException occurring when reading the laptop from laptop store", e);
-        } finally {
-            String message = "Unable to close database connection when try with the reading a laptop";
-            closeConnection(connection, message);
-        }
+
     }
 
     public void delete(Laptop laptop) {
-        Connection connection = null;
-        try {
-            connection = DatabaseManager.getInstance().getConnection();
-            String query = "DELETE FROM " + SQLCommon.LAPTOP_STORE_TABLE + " WHERE serial_number='" + laptop.getSerialNumber() + "'";
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-        } catch (SQLException e) {
-            log.error("SQLException occurring when reading the laptop from laptop store", e);
-        } finally {
-            String message = "Unable to close database connection when try with the reading a laptop";
-            closeConnection(connection, message);
-        }
-    }
 
-    private void closeConnection(Connection connection, String message) {
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            log.error(message);
-            e.printStackTrace();
-        }
     }
 }
