@@ -5,6 +5,7 @@ import persistance.DatabaseManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class LaptopStoreTest extends DatabaseTableReadHelper {
     private final LaptopStore laptopStore = new LaptopStore();
@@ -24,5 +25,15 @@ public class LaptopStoreTest extends DatabaseTableReadHelper {
             e.printStackTrace();
         }
         Assert.assertTrue(isLaptopExists);
+    }
+
+    @Test
+    public void readLaptop() {
+        List<Laptop> laptops = laptopStore.read();
+        laptops.forEach(laptop -> {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("brand name :").append(laptop.getBrandName()).append(" model name :").append(laptop.getModelName()).append(" serial number :").append(laptop.getSerialNumber());
+            System.out.println(stringBuilder);
+        });
     }
 }

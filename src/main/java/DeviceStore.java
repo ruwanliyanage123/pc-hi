@@ -1,3 +1,5 @@
+import java.util.List;
+
 public interface DeviceStore<T> {
     /**
      * Add the device to the database
@@ -8,7 +10,7 @@ public interface DeviceStore<T> {
     /**
      * Get the all devices from the database
      */
-    void read();
+    List<T> read();
 
     /**
      * Update the given device from the database
