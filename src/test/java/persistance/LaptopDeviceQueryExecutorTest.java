@@ -8,13 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LaptopDeviceQueryExecutorTest {
+public class LaptopDeviceQueryExecutorTest{
     @Test
     public void testLaptopDeviceTableCreation() {
         boolean isTableExists;
         LaptopDeviceQueryExecutor.getInstance();
         Connection connection = DatabaseManager.getInstance().getConnection();
-        String query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'laptop_store'";
+        String query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = '"+Common.LAPTOP_STORE_TABLE+"'";
         Statement statement;
         try {
             statement = connection.createStatement();
