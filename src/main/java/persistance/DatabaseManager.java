@@ -11,7 +11,7 @@ public class DatabaseManager {
     private static final String password= "password";
     private Connection connection;
 
-    public DatabaseManager(){
+    private DatabaseManager(){
         try{
             Class.forName(className);
             connection = DriverManager.getConnection(url,userName,password);
@@ -26,6 +26,14 @@ public class DatabaseManager {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static final class DatabaseManagerLazyLoader{
+        public static final DatabaseManager INSTANCE = new DatabaseManager();
+    }
+
+    public static DatabaseManager getInstance(){
+        return DatabaseManagerLazyLoader.INSTANCE;
     }
 
     public Connection getConnection() {
