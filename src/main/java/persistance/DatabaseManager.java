@@ -17,14 +17,6 @@ public class DatabaseManager {
             connection = DriverManager.getConnection(url,userName,password);
         } catch (ClassNotFoundException |SQLException e) {
             e.printStackTrace();
-        }finally {
-            try {
-                if(connection != null){
-                    connection.close();
-                }
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
         }
     }
 
