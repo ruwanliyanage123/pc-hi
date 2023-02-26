@@ -32,7 +32,7 @@ public class LaptopStore implements DeviceStore<Laptop> {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("laptop_persist");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("SELECT e FROM Laptop e");
+        Query query = entityManager.createQuery("SELECT e FROM Laptop e");//Use the class name instead of table name.
         List<Laptop> laptops =  query.getResultList();
         entityManager.getTransaction().commit();
         entityManager.close();
