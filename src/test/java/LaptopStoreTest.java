@@ -26,7 +26,9 @@ public class LaptopStoreTest{
     }
 
     @Test
-    public void updateLaptop() {}
+    public void updateLaptop() {
+        laptopStore.update(new Laptop("Mac","M11", "MACI"), 4L);
+    }
 
     @Test
     public void deleteLaptop() {

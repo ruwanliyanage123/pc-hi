@@ -39,8 +39,17 @@ public class LaptopStore implements DeviceStore<Laptop> {
         return laptops;
     }
 
-    public void update(Laptop laptop) {
-
+    public void update(Laptop laptop, Long id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("laptop_persist");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Laptop selectedLap = entityManager.find(Laptop.class, id);
+        selectedLap.setBrandName(laptop.getBrandName());
+        selectedLap.setModelName(laptop.getModelName());
+        selectedLap.setSerialNumber(laptop.getSerialNumber());
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        entityManagerFactory.close();
     }
 
     public void delete(Long id) {

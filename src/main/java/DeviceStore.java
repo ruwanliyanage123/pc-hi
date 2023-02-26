@@ -16,7 +16,7 @@ public interface DeviceStore<T> {
      * Update the given device from the database
      * @param t device
      */
-    void update(T t);
+    void update(T t, Long id);
 
     /**
      * Delete the given device by id from the database
