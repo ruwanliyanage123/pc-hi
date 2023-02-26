@@ -9,10 +9,9 @@ public class LaptopStoreTest{
     private final LaptopStore laptopStore = new LaptopStore();
 
     @Test
-    public void testCreateLaptop() {}
-
-    @Test
-    public void readLaptop() {}
+    public void testCreateLaptop() {
+        laptopStore.create(new Laptop( "HP", "D-001", "DFGHJ1"));
+    }
 
     @Test
     public void updateLaptop() {}

@@ -1,50 +1,69 @@
-public class Laptop implements Device {
-    private String brandName;
-    private String modelName;
-    private String serialNumber;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public Laptop(String brandName, String modelName, String serialNumber) {
-        this.brandName = brandName;
-        this.modelName = modelName;
-        this.serialNumber = serialNumber;
-    }
+    @Entity
+    @Table(name = "laptop")
+    public class Laptop implements Device {
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Long lapId;
+        @Column(name = "brand_name")
+        private String brandName;
+        @Column(name = "model_name")
+        private String modelName;
+        @Column(name = "serial_number")
+        private String serialNumber;
 
-    public Laptop() {
-    }
+        public Laptop(String brandName, String modelName, String serialNumber) {
+            this.brandName = brandName;
+            this.modelName = modelName;
+            this.serialNumber = serialNumber;
+        }
 
-    public String getBrandName() {
-        return brandName;
-    }
+        public Laptop() {
+        }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
+        public String getBrandName() {
+            return brandName;
+        }
 
-    public String getModelName() {
-        return modelName;
-    }
+        public void setBrandName(String brandName) {
+            this.brandName = brandName;
+        }
 
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
+        public String getModelName() {
+            return modelName;
+        }
 
-    public String getSerialNumber() {
-        return serialNumber;
-    }
+        public void setModelName(String modelName) {
+            this.modelName = modelName;
+        }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
+        public String getSerialNumber() {
+            return serialNumber;
+        }
 
-    public void start() {
-        System.out.println("Starting the" + serialNumber + " laptop...");
-    }
+        public void setSerialNumber(String serialNumber) {
+            this.serialNumber = serialNumber;
+        }
 
-    public void restart() {
-        System.out.println("restarting the laptop...");
-    }
+        public Long getLapId() {
+            return lapId;
+        }
 
-    public void shutdown() {
-        System.out.println("Shutting down the laptop...");
+        public void start() {
+            System.out.println("Starting the" + serialNumber + " laptop...");
+        }
+
+        public void restart() {
+            System.out.println("restarting the laptop...");
+        }
+
+        public void shutdown() {
+            System.out.println("Shutting down the laptop...");
+        }
     }
-}

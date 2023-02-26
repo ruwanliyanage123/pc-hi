@@ -1,5 +1,3 @@
-package persistance;
-
 import java.util.List;
 
 public interface DeviceStore<T> {
