@@ -29,6 +29,8 @@ public class LaptopStoreTest{
     public void updateLaptop() {}
 
     @Test
-    public void deleteLaptop() {}
+    public void deleteLaptop() {
+        laptopStore.delete(3L);
+    }
 
 }
