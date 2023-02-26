@@ -39,7 +39,7 @@ public class LaptopStore implements DeviceStore<Laptop> {
         entityManager.getTransaction().begin();
         //Query query = entityManager.createQuery("UPDATE Laptop lap SET lap.brand_name = :brand, lap.model_name = :model, lap.serial_number = :serial  WHERE lap.lapId= :id");
         //note: if we added @namedQuery in the enity class, that will take priority than here. another thing is seems this cannot understand the underscore brand_name, and need to give as brandName.
-        Query query = entityManager.createQuery("UPDATE Laptop lap SET lap.brandName = :brand, lap.modelName = :model, lap.serialNumber = :serial  WHERE lap.lapId= :id");
+        Query query = entityManager.createNamedQuery("Laptop.updateGivenLaptop");
         query.setParameter("id", id);
         query.setParameter("model", laptop.getModelName());
         query.setParameter("brand", laptop.getBrandName());
