@@ -29,7 +29,15 @@ public class LaptopStore implements DeviceStore<Laptop> {
     }
 
     public List<Laptop> read() {
-        return null;
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("laptop_persist");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("SELECT e FROM Laptop e");
+        List<Laptop> laptops =  query.getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        entityManagerFactory.close();
+        return laptops;
     }
 
     public void update(Laptop laptop) {

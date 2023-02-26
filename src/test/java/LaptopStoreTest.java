@@ -14,6 +14,18 @@ public class LaptopStoreTest{
     }
 
     @Test
+    public void readLaptop() {
+        laptopStore.read().forEach(laptop -> {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Unique Id :").append(laptop.getLapId())
+                    .append(" Brand name: ").append(laptop.getBrandName())
+                    .append(" Model name: ").append(laptop.getModelName())
+                    .append(" Serial number: ").append(laptop.getSerialNumber());
+            System.out.println(stringBuilder);
+        });
+    }
+
+    @Test
     public void updateLaptop() {}
 
     @Test
