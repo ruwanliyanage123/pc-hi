@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "laptop")
 @NamedQueries({
-        @NamedQuery(name = "Laptop.getAllLaptopDetails", query = "SELECT lap FROM Laptop lap")
+        @NamedQuery(name = "Laptop.getAllLaptopDetails", query = "SELECT lap FROM Laptop lap"),
 })
 public class Laptop implements Device {
     @Id

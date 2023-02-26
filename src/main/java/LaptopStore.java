@@ -47,8 +47,9 @@ public class LaptopStore implements DeviceStore<Laptop> {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("laptop_persist");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        Laptop selectedLap = entityManager.find(Laptop.class, id);
-        entityManager.remove(selectedLap);
+        Query query = entityManager.createQuery("DELETE FROM Laptop lap WHERE lap.lapId= :id");
+        query.setParameter("id",id);
+        query.executeUpdate();
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
