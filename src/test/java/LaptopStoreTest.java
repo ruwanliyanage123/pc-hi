@@ -30,7 +30,7 @@ public class LaptopStoreTest{
 
     @Test
     public void deleteLaptop() {
-        laptopStore.delete(2L);
+        laptopStore.delete(5L);
     }
 
 }

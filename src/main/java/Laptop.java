@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "laptop")
 @NamedQueries({
         @NamedQuery(name = "Laptop.getAllLaptopDetails", query = "SELECT lap FROM Laptop lap"),
+        @NamedQuery(name = "Laptop.deleteGivenLaptop", query = "DELETE FROM Laptop lap WHERE lap.lapId= :id"),
 })
 public class Laptop implements Device {
     @Id
