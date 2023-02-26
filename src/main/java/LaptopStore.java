@@ -1,17 +1,11 @@
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.annotations.NamedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LaptopStore implements DeviceStore<Laptop> {
@@ -43,10 +37,13 @@ public class LaptopStore implements DeviceStore<Laptop> {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("laptop_persist");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        Laptop selectedLap = entityManager.find(Laptop.class, id);
-        selectedLap.setBrandName(laptop.getBrandName());
-        selectedLap.setModelName(laptop.getModelName());
-        selectedLap.setSerialNumber(laptop.getSerialNumber());
+        //Query query = entityManager.createQuery("UPDATE Laptop lap SET lap.brand_name = :brand, lap.model_name = :model, lap.serial_number = :serial  WHERE lap.lapId= :id");
+        Query query = entityManager.createQuery("UPDATE Laptop lap SET lap.brandName = :brand, lap.modelName = :model, lap.serialNumber = :serial  WHERE lap.lapId= :id");
+        query.setParameter("id", id);
+        query.setParameter("model", laptop.getModelName());
+        query.setParameter("brand", laptop.getBrandName());
+        query.setParameter("serial", laptop.getSerialNumber());
+        query.executeUpdate();
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
@@ -57,7 +54,7 @@ public class LaptopStore implements DeviceStore<Laptop> {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         Query query = entityManager.createNamedQuery("Laptop.deleteGivenLaptop");
-        query.setParameter("id",id);
+        query.setParameter("id", id);
         query.executeUpdate();
         entityManager.getTransaction().commit();
         entityManager.close();
