@@ -1,4 +1,3 @@
-import org.hibernate.annotations.NamedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,8 +7,8 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
-public class LaptopStore implements DeviceStore<Laptop> {
-    private final Logger log = LoggerFactory.getLogger(LaptopStore.class);
+public class LaptopStoreJPA implements DeviceStore<Laptop> {
+    private final Logger log = LoggerFactory.getLogger(LaptopStoreJPA.class);
 
     public void create(Laptop laptop) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("laptop_persist");

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
  * But since this is not a production environment as well as this is only for the learning purpose. So we can use this just to test the crud operations methods.
  */
 public class LaptopStoreTest{
-    private final LaptopStore laptopStore = new LaptopStore();
+    private final DeviceStore<Laptop> laptopStore = new LaptopStoreJPA();
 
     @Test
     public void testCreateLaptop() {
