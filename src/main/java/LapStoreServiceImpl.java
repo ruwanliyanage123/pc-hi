@@ -1,5 +1,8 @@
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class LapStoreServiceImpl implements LapStoreService{
-    private final DeviceStoreDAO<Laptop> laptopStore = new LaptopStoreDAOImpl();
+    @Autowired
+    private LaptopStoreDAO laptopStore;
 
     public void createLaptop() {
         laptopStore.create(new Laptop( "HP", "D-001", "DFGHJ1"));

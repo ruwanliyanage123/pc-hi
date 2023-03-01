@@ -1,7 +1,12 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.Test;
 
+@ContextConfiguration(classes = {AppConfig.class})
 public class LapStoreServiceImplTest {
-    LapStoreService lapStoreService = new LapStoreServiceImpl();
+
+    @Autowired
+    LapStoreService lapStoreService;
 
     @Test
     public void testCreate(){

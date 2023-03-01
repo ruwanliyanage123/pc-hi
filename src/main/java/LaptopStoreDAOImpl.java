@@ -1,6 +1,5 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,7 +7,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
-@Component
 public class LaptopStoreDAOImpl implements LaptopStoreDAO {
     private final Logger log = LoggerFactory.getLogger(LaptopStoreDAOImpl.class);
 

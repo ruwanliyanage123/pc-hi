@@ -15,7 +15,7 @@ import javax.persistence.Table;
         @NamedQuery(name = "Laptop.deleteGivenLaptop", query = "DELETE FROM Laptop lap WHERE lap.lapId= :id"),
         @NamedQuery(name = "Laptop.updateGivenLaptop", query = "UPDATE Laptop lap SET lap.brandName = :brand, lap.modelName = :model, lap.serialNumber = :serial  WHERE lap.lapId= :id"),
 })
-public class Laptop implements Device {
+public class Laptop{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lapId;
