@@ -1,19 +1,10 @@
-import org.testng.annotations.Test;
+public class LapStoreServiceImpl implements LapStoreService{
+    private final DeviceStoreDAO<Laptop> laptopStore = new LaptopStoreDAOImpl();
 
-/**
- * This sort of unit test are not recommended. Because this unit test wrote by directly connecting with the system database.
- * This is not a good practise and will be very harmful effects to the database.
- * But since this is not a production environment as well as this is only for the learning purpose. So we can use this just to test the crud operations methods.
- */
-public class LaptopStoreTest{
-    private final DeviceStore<Laptop> laptopStore = new LaptopStoreJPA();
-
-    @Test
-    public void testCreateLaptop() {
+    public void createLaptop() {
         laptopStore.create(new Laptop( "HP", "D-001", "DFGHJ1"));
     }
 
-    @Test
     public void readLaptop() {
         laptopStore.read().forEach(laptop -> {
             StringBuilder stringBuilder = new StringBuilder();
@@ -25,14 +16,12 @@ public class LaptopStoreTest{
         });
     }
 
-    @Test
     public void updateLaptop() {
         laptopStore.update(new Laptop("Mac","M11", "MACI"), 1L);
     }
 
-    @Test
+
     public void deleteLaptop() {
         laptopStore.delete(5L);
     }
-
 }

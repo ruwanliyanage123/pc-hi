@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface DeviceStore<T> {
+public interface DeviceStoreDAO<T> {
     /**
      * Add the device to the database
      * @param t device
