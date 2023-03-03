@@ -8,6 +8,8 @@
       <version>8.0.31</version>
     </dependency>
 
+Need to use a singleton pattern to the database connection
+
 **v2.0.0 - CRUD Example with JPA**
 
      <dependency>
