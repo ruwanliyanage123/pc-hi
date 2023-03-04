@@ -59,6 +59,9 @@ EntityManager...
     entityManager.close();
     entityManagerFactory.close();
     
+    
+Need to use class name(Laptop) in the queries as follows.
+    
     @Entity
     @Table(name = "laptop")
     @NamedQueries({
@@ -66,3 +69,5 @@ EntityManager...
         @NamedQuery(name = "Laptop.deleteGivenLaptop", query = "DELETE FROM Laptop lap WHERE lap.lapId= :id"),
         @NamedQuery(name = "Laptop.updateGivenLaptop", query = "UPDATE Laptop lap SET lap.brandName = :brand, lap.modelName = :model, lap.serialNumber =           :serial  WHERE lap.lapId= :id")
      })
+     
+ 
