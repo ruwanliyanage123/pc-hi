@@ -58,3 +58,11 @@ EntityManager...
     entityManager.getTransaction().commit();
     entityManager.close();
     entityManagerFactory.close();
+    
+    @Entity
+    @Table(name = "laptop")
+    @NamedQueries({
+        @NamedQuery(name = "Laptop.getAllLaptopDetails", query = "SELECT lap FROM Laptop lap"),
+        @NamedQuery(name = "Laptop.deleteGivenLaptop", query = "DELETE FROM Laptop lap WHERE lap.lapId= :id"),
+        @NamedQuery(name = "Laptop.updateGivenLaptop", query = "UPDATE Laptop lap SET lap.brandName = :brand, lap.modelName = :model, lap.serialNumber =           :serial  WHERE lap.lapId= :id")
+     })
