@@ -8,6 +8,8 @@
       <version>8.0.31</version>
     </dependency>
 
+Need to use a singleton pattern to the database connection
+
 **v2.0.0 - CRUD Example with JPA**
 
      <dependency>
@@ -56,3 +58,16 @@ EntityManager...
     entityManager.getTransaction().commit();
     entityManager.close();
     entityManagerFactory.close();
+    
+    
+Need to use class name(Laptop) in the queries as follows.
+    
+    @Entity
+    @Table(name = "laptop")
+    @NamedQueries({
+        @NamedQuery(name = "Laptop.getAllLaptopDetails", query = "SELECT lap FROM Laptop lap"),
+        @NamedQuery(name = "Laptop.deleteGivenLaptop", query = "DELETE FROM Laptop lap WHERE lap.lapId= :id"),
+        @NamedQuery(name = "Laptop.updateGivenLaptop", query = "UPDATE Laptop lap SET lap.brandName = :brand, lap.modelName = :model, lap.serialNumber =           :serial  WHERE lap.lapId= :id")
+     })
+     
+ 
