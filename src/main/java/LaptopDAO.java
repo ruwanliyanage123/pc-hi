@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LaptopDAO {
 
-    public void create(Laptop laptop) {
+    public void saveLaptop(Laptop laptop) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -14,7 +14,7 @@ public class LaptopDAO {
         entityManager.close();
     }
 
-    public List<Laptop> read() {
+    public List<Laptop> getAllLaptops() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -24,7 +24,16 @@ public class LaptopDAO {
         return laptops;
     }
 
-    public void update(Laptop laptop, Long id) {
+    public Laptop getLaptopById(Long id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Laptop laptop = entityManager.find(Laptop.class, id);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return laptop;
+    }
+
+    public void updateLaptop(Laptop laptop, Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -36,7 +45,7 @@ public class LaptopDAO {
         entityManager.close();
     }
 
-    public void delete(Long id) {
+    public void deleteLaptop(Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

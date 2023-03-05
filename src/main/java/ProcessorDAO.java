@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ProcessorDAO {
 
-    public void create(Processor processor) {
+    public void saveProcessor(Processor processor) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -14,7 +14,17 @@ public class ProcessorDAO {
         entityManager.close();
     }
 
-    public List<Processor> read() {
+    public Processor getProcessorById(Long id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Processor processor = entityManager.find(Processor.class, id);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return processor;
+    }
+
+    public List<Processor> getAllProcessor() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -24,7 +34,7 @@ public class ProcessorDAO {
         return laptops;
     }
 
-    public void update(Processor processor, Long id) {
+    public void updateProcessor(Processor processor, Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -36,7 +46,7 @@ public class ProcessorDAO {
         entityManager.close();
     }
 
-    public void delete(Long id) {
+    public void deleteProcessor(Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

@@ -17,7 +17,7 @@ public class Laptop {
     private String modelName;
     @Column(name = "price")
     private Double price;
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "processor_id")
     private Processor processor;
 
