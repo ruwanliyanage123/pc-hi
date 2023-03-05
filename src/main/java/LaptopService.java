@@ -11,11 +11,11 @@ public class LaptopService {
 
     public void getAllLaptops() {
         List<Laptop> laptops = laptopDAO.getAllLaptops();
-        laptops.forEach(h->{
-            System.out.println(h.getLapId()+" "+ h.getModelName()+" ");
+        laptops.forEach(h -> {
+            System.out.println(h.getLapId() + " " + h.getModelName() + " ");
         });
-        laptops.forEach(h->{
-            System.out.println(h.getProcessor().getProcessorId()+" "+ h.getProcessor().getModelNumber()+" "+h.getProcessor().getPrice());
+        laptops.forEach(h -> {
+            System.out.println(h.getProcessor().getProcessorId() + " " + h.getProcessor().getModelNumber() + " " + h.getProcessor().getPrice());
         });
     }
 
@@ -29,11 +29,11 @@ public class LaptopService {
         laptopDAO.updateLaptop(laptop);
     }
 
-    public void deleteLaptop() {
-        laptopDAO.deleteLaptop(13L);
+    public void deleteLaptop(Long lapId) {
+        laptopDAO.deleteLaptop(lapId);
     }
 
-    public void changeProcessor(Long lapId, Long newProcessor){
+    public void changeProcessor(Long lapId, Long newProcessor) {
         Laptop laptop = laptopDAO.getLaptopById(lapId);
         Processor processor = processorDAO.getProcessorById(newProcessor);
         laptop.setProcessor(processor);
