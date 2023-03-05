@@ -1,9 +1,10 @@
 public class Application {
     public static void main(String[] args) {
-        Processor processor = new Processor("Intel7", 19500.5);
-        Laptop laptop = new Laptop("Toshiba",processor,50000.0);
-        new LaptopService().saveLaptop(laptop);
-//        new LaptopService().read();
+//        Processor processor = new Processor("intel - i7", 27000.0);
+//        Laptop laptop = new Laptop("Dell i7", processor, 370000.0);
+//        new LaptopService().saveLaptop(laptop);
+        //new LaptopService().getLaptopById(37L);
+        new LaptopService().getAllLaptops();
 //        new LaptopService().update();
 //        new LaptopService().delete();
     }

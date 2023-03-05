@@ -18,7 +18,7 @@ public class LaptopDAO {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        List<Laptop> laptops = entityManager.createNamedQuery("Laptop.getAllLaptopDetails", Laptop.class).getResultList();
+        List<Laptop> laptops = entityManager.createQuery("SELECT lap FROM Laptop lap").getResultList();
         entityManager.getTransaction().commit();
         entityManager.close();
         return laptops;
@@ -27,6 +27,7 @@ public class LaptopDAO {
     public Laptop getLaptopById(Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
         Laptop laptop = entityManager.find(Laptop.class, id);
         entityManager.getTransaction().commit();
         entityManager.close();
