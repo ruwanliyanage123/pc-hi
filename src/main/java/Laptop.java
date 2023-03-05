@@ -2,6 +2,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,11 +15,14 @@ public class Laptop {
     private Long lapId;
     @Column(name = "model_name")
     private String modelName;
-
     @Column(name = "price")
     private Double price;
+    @OneToOne()
+    @JoinColumn(name = "processor_id")
+    private Processor processor;
 
-    public Laptop(String modelName, Double price) {
+    public Laptop(String modelName, Processor processor, Double price) {
+        this.processor = processor;
         this.modelName = modelName;
         this.price = price;
     }
@@ -46,5 +51,13 @@ public class Laptop {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Processor getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(Processor processor) {
+        this.processor = processor;
     }
 }
