@@ -25,12 +25,18 @@ public class LaptopService {
         System.out.println(laptop.getProcessor().getProcessorId() + " " + laptop.getProcessor().getModelNumber() + " " + laptop.getProcessor().getPrice());
     }
 
-    public void updateLaptop() {
-        Processor processor = new Processor("Intel8", 19500.5);
-        laptopDAO.updateLaptop(new Laptop("HP", processor, 20000.50), 14L);
+    public void updateLaptop(Laptop laptop) {
+        laptopDAO.updateLaptop(laptop);
     }
 
     public void deleteLaptop() {
         laptopDAO.deleteLaptop(13L);
+    }
+
+    public void changeProcessor(Long lapId, Long newProcessor){
+        Laptop laptop = laptopDAO.getLaptopById(lapId);
+        Processor processor = processorDAO.getProcessorById(newProcessor);
+        laptop.setProcessor(processor);
+        laptopDAO.updateLaptop(laptop);
     }
 }

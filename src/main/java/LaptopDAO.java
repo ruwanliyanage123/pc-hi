@@ -34,13 +34,14 @@ public class LaptopDAO {
         return laptop;
     }
 
-    public void updateLaptop(Laptop laptop, Long id) {
+    public void updateLaptop(Laptop laptop) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        Laptop lap = entityManager.find(Laptop.class, id);
+        Laptop lap = entityManager.find(Laptop.class, laptop.getLapId());
         lap.setModelName(laptop.getModelName());
         lap.setPrice(laptop.getPrice());
+        lap.setProcessor(laptop.getProcessor());
         entityManager.merge(lap);
         entityManager.getTransaction().commit();
         entityManager.close();
