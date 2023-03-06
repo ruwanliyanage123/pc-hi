@@ -1,28 +1,29 @@
 import entity.Laptop;
 import entity.Processor;
 import entity.Ram;
+import entity.WifiRouter;
 import service.api.LaptopService;
 import service.impl.LaptopServiceImpl;
+import service.impl.WifiRouterServiceImpl;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
     private static LaptopService laptopService = new LaptopServiceImpl();
 
     public static void main(String[] args) {
-
+        saveLaptop();
     }
 
     private static void saveLaptop() {
         Ram ram1 = new Ram("DDR8-01", 4);
         Ram ram2 = new Ram("DDR8-02", 8);
-        Ram ram3 = new Ram("DDR8-03", 16);
-        Ram ram4 = new Ram("DDR8-04", 32);
-
-        List<Ram> ramList = Arrays.asList(ram1, ram2, ram3, ram4);
+        List<Ram> ramList = Arrays.asList(ram1, ram2);
         Processor processor = new Processor("Intel i7 DDR8", 25000.0);
-        Laptop lap = new Laptop(processor, ramList, "Dell i7 -80 DDR8", 25000.0);
+        WifiRouter wifiRouter = new WifiRouter("JWR","Huawei");
+        Laptop lap = new Laptop(wifiRouter, processor, ramList, "Dell i7 -80 DDR8", 25000.0);
         laptopService.saveLaptop(lap);
     }
 
