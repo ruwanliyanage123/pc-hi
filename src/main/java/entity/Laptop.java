@@ -1,15 +1,18 @@
 package entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "laptop")
@@ -24,12 +27,15 @@ public class Laptop {
     private Double price;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "processor_id")
-    @Autowired
     private Processor processor;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Ram> ram = new ArrayList<>();
 
-    public Laptop(String modelName, Double price) {
+    public Laptop(Processor processor, List<Ram> ram, String modelName, Double price) {
+        this.processor = processor;
         this.modelName = modelName;
         this.price = price;
+        this.ram = ram;
     }
 
     public Laptop() {
@@ -65,5 +71,17 @@ public class Laptop {
 
     public void setProcessor(Processor processor) {
         this.processor = processor;
+    }
+
+    public List<Ram> getRam() {
+        return ram;
+    }
+
+    public void setRam(List<Ram> ram) {
+        this.ram = ram;
+    }
+
+    public void addRam(Ram ram) {
+        if (ram != null) this.ram.add(ram);
     }
 }

@@ -7,7 +7,7 @@ public interface LaptopService {
 
     void getAllLaptops();
 
-    void getLaptopById(Long id);
+    Laptop getLaptopById(Long id);
 
     void updateLaptop(Laptop laptop);
 

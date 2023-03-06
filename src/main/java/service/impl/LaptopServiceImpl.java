@@ -1,7 +1,11 @@
 package service.impl;
 
+import dao.api.LaptopDAO;
+import dao.api.ProcessorDAO;
+import dao.api.RamDAO;
 import dao.impl.LaptopDAOImpl;
 import dao.impl.ProcessorDAOImpl;
+import dao.impl.RamDAOImpl;
 import entity.Laptop;
 import entity.Processor;
 import service.api.LaptopService;
@@ -9,11 +13,11 @@ import service.api.LaptopService;
 import java.util.List;
 
 public class LaptopServiceImpl implements LaptopService {
-    private LaptopDAOImpl laptopDAO = new LaptopDAOImpl();
-    private ProcessorDAOImpl processorDAO = new ProcessorDAOImpl();
+    private LaptopDAO laptopDAO = new LaptopDAOImpl();
+    private ProcessorDAO processorDAO = new ProcessorDAOImpl();
+    private RamDAO ramDAO = new RamDAOImpl();
 
     public void saveLaptop(Laptop laptop) {
-        processorDAO.saveProcessor(laptop.getProcessor());
         laptopDAO.saveLaptop(laptop);
     }
 
@@ -27,10 +31,8 @@ public class LaptopServiceImpl implements LaptopService {
         });
     }
 
-    public void getLaptopById(Long id) {
-        Laptop laptop = laptopDAO.getLaptopById(id);
-        System.out.println(laptop.getLapId() + " " + laptop.getModelName() + " " + laptop.getPrice());
-        System.out.println(laptop.getProcessor().getProcessorId() + " " + laptop.getProcessor().getModelNumber() + " " + laptop.getProcessor().getPrice());
+    public Laptop getLaptopById(Long id) {
+        return laptopDAO.getLaptopById(id);
     }
 
     public void updateLaptop(Laptop laptop) {
