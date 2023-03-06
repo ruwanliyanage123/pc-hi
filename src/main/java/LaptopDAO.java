@@ -9,7 +9,7 @@ public class LaptopDAO {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(laptop);
+        entityManager.merge(laptop);
         entityManager.getTransaction().commit();
         entityManager.close();
     }

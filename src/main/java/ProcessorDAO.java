@@ -9,7 +9,7 @@ public class ProcessorDAO {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(processor);
+        entityManager.merge(processor);
         entityManager.getTransaction().commit();
         entityManager.close();
     }

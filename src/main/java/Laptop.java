@@ -1,3 +1,5 @@
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,10 +22,10 @@ public class Laptop {
     private Double price;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "processor_id")
+    @Autowired
     private Processor processor;
 
-    public Laptop(String modelName, Processor processor, Double price) {
-        this.processor = processor;
+    public Laptop(String modelName, Double price) {
         this.modelName = modelName;
         this.price = price;
     }
