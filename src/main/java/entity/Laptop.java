@@ -1,3 +1,5 @@
+package entity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.CascadeType;
@@ -30,7 +32,8 @@ public class Laptop {
         this.price = price;
     }
 
-    public Laptop(){}
+    public Laptop() {
+    }
 
     public Long getLapId() {
         return lapId;

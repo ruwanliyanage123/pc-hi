@@ -1,58 +1,62 @@
+package dao.impl;
+
+import dao.api.ProcessorDAO;
+import entity.Processor;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class LaptopDAO {
+public class ProcessorDAOImpl implements ProcessorDAO {
 
-    public void saveLaptop(Laptop laptop) {
+    public void saveProcessor(Processor processor) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.merge(laptop);
+        entityManager.merge(processor);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
 
-    public List<Laptop> getAllLaptops() {
+    public Processor getProcessorById(Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        List<Laptop> laptops = entityManager.createQuery("SELECT lap FROM Laptop lap").getResultList();
+        Processor processor = entityManager.find(Processor.class, id);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return processor;
+    }
+
+    public List<Processor> getAllProcessor() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<Processor> laptops = entityManager.createNamedQuery("SELECT processor FROM Processor processor", Processor.class).getResultList();
         entityManager.getTransaction().commit();
         entityManager.close();
         return laptops;
     }
 
-    public Laptop getLaptopById(Long id) {
+    public void updateProcessor(Processor processor, Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        Laptop laptop = entityManager.find(Laptop.class, id);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        return laptop;
-    }
-
-    public void updateLaptop(Laptop laptop) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        Laptop lap = entityManager.find(Laptop.class, laptop.getLapId());
-        lap.setModelName(laptop.getModelName());
-        lap.setPrice(laptop.getPrice());
-        lap.setProcessor(laptop.getProcessor());
-        entityManager.merge(lap);
+        Processor pro = entityManager.find(Processor.class, id);
+        pro.setModelNumber(processor.getModelNumber());
+        pro.setPrice(processor.getPrice());
+        entityManager.merge(pro);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
 
-    public void deleteLaptop(Long id) {
+    public void deleteProcessor(Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        Laptop lap = entityManager.find(Laptop.class, id);
-        entityManager.remove(lap);
+        Processor processor = entityManager.find(Processor.class, id);
+        entityManager.remove(processor);
         entityManager.getTransaction().commit();
         entityManager.close();
     }

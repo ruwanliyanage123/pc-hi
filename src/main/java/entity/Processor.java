@@ -1,3 +1,5 @@
+package entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "processor")
-public class Processor{
+public class Processor {
     @Id
     @GeneratedValue
     @Column(name = "processor_id")
@@ -15,6 +17,7 @@ public class Processor{
     private String modelNumber;
     @Column(name = "price")
     private Double price;
+
     public Processor(String modelNumber, Double price) {
         this.modelNumber = modelNumber;
         this.price = price;

@@ -1,8 +1,16 @@
+package service.impl;
+
+import dao.impl.LaptopDAOImpl;
+import dao.impl.ProcessorDAOImpl;
+import entity.Laptop;
+import entity.Processor;
+import service.api.LaptopService;
+
 import java.util.List;
 
-public class LaptopService {
-    private LaptopDAO laptopDAO = new LaptopDAO();
-    private ProcessorDAO processorDAO = new ProcessorDAO();
+public class LaptopServiceImpl implements LaptopService {
+    private LaptopDAOImpl laptopDAO = new LaptopDAOImpl();
+    private ProcessorDAOImpl processorDAO = new ProcessorDAOImpl();
 
     public void saveLaptop(Laptop laptop) {
         processorDAO.saveProcessor(laptop.getProcessor());

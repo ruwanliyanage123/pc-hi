@@ -1,4 +1,5 @@
-import org.springframework.beans.factory.annotation.Value;
+import entity.Laptop;
+import entity.Processor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,7 +12,7 @@ public class AppConfig {
     }
 
     @Bean
-    public Laptop getLaptop(){
+    public Laptop getLaptop() {
         Laptop laptop = new Laptop("Dell Inspiron 15", 700.0);
         return laptop;
     }
