@@ -11,7 +11,8 @@ public class Application {
     private static LaptopService laptopService = new LaptopServiceImpl();
     public static void main(String[] args) {
         //saveLaptop();
-        getLaptop(189L);
+        //getLaptop(189L);
+        delete(189L);
     }
 
     private static void saveLaptop(){
@@ -35,5 +36,9 @@ public class Application {
         for (Ram ram:list) {
             System.out.println(ram.getRamId()+" : "+ ram.getModelName()+" : "+ram.getModelName());
         }
+    }
+
+    private static void delete(Long id){
+        laptopService.deleteLaptop(id);
     }
 }

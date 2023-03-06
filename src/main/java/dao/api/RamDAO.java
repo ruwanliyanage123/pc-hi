@@ -1,6 +1,5 @@
 package dao.api;
 
-import entity.Laptop;
 import entity.Ram;
 
 import java.util.List;
