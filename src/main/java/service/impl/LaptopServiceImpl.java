@@ -2,12 +2,8 @@ package service.impl;
 
 import dao.api.LaptopDAO;
 import dao.api.ProcessorDAO;
-import dao.api.RamDAO;
-import dao.api.WifiRouterDAO;
 import dao.impl.LaptopDAOImpl;
 import dao.impl.ProcessorDAOImpl;
-import dao.impl.RamDAOImpl;
-import dao.impl.WifiRouterDAOImpl;
 import entity.Laptop;
 import entity.Processor;
 import entity.Ram;
@@ -18,8 +14,6 @@ import java.util.List;
 public class LaptopServiceImpl implements LaptopService {
     private LaptopDAO laptopDAO = new LaptopDAOImpl();
     private ProcessorDAO processorDAO = new ProcessorDAOImpl();
-    private RamDAO ramDAO = new RamDAOImpl();
-    private WifiRouterDAO wifiRouterDAO = new WifiRouterDAOImpl();
 
     public void saveLaptop(Laptop laptop) {
         laptopDAO.saveLaptop(laptop);
