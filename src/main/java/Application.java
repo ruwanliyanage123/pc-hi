@@ -11,19 +11,21 @@ public class Application {
     private static LaptopService laptopService = new LaptopServiceImpl();
     public static void main(String[] args) {
         //saveLaptop();
-        //getLaptop(189L);
-        delete(189L);
+        //getLaptop(222L);
+        //delete(189L);
+        Ram ram = new Ram("DDR5-11", 32);
+        changeRam(ram,222L, 223L);
     }
 
     private static void saveLaptop(){
-        Ram ram1 = new Ram("DDR7-01",4);
-        Ram ram2 = new Ram("DDR7-02",8);
-        Ram ram3 = new Ram("DDR7-03",16);
-        Ram ram4 = new Ram("DDR7-04",32);
+        Ram ram1 = new Ram("DDR8-01",4);
+        Ram ram2 = new Ram("DDR8-02",8);
+        Ram ram3 = new Ram("DDR8-03",16);
+        Ram ram4 = new Ram("DDR8-04",32);
 
         List<Ram> ramList = Arrays.asList(ram1, ram2, ram3, ram4);
-        Processor processor = new Processor("Intel i7 DDR7", 25000.0);
-        Laptop lap = new Laptop(processor, ramList, "Dell i7 -80 DDR7", 25000.0);
+        Processor processor = new Processor("Intel i7 DDR8", 25000.0);
+        Laptop lap = new Laptop(processor, ramList, "Dell i7 -80 DDR8", 25000.0);
         laptopService.saveLaptop(lap);
     }
 
@@ -40,5 +42,9 @@ public class Application {
 
     private static void delete(Long id){
         laptopService.deleteLaptop(id);
+    }
+
+    private static void changeRam(Ram ram, Long lapId, Long ramId){
+        laptopService.changeRam(ram,lapId,ramId);
     }
 }

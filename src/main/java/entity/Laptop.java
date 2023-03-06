@@ -27,6 +27,7 @@ public class Laptop {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "processor_id")
     private Processor processor;
+    @JoinColumn(name = "lap_id")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Ram> ram = new ArrayList<>();
 

@@ -8,6 +8,7 @@ import dao.impl.ProcessorDAOImpl;
 import dao.impl.RamDAOImpl;
 import entity.Laptop;
 import entity.Processor;
+import entity.Ram;
 import service.api.LaptopService;
 
 import java.util.List;
@@ -47,6 +48,16 @@ public class LaptopServiceImpl implements LaptopService {
         Laptop laptop = laptopDAO.getLaptopById(lapId);
         Processor processor = processorDAO.getProcessorById(newProcessor);
         laptop.setProcessor(processor);
+        laptopDAO.updateLaptop(laptop);
+    }
+
+    @Override
+    public void changeRam(Ram ram, Long lapId, Long ramId) {
+        Laptop laptop = laptopDAO.getLaptopById(lapId);
+        List<Ram> ramList = laptop.getRam();
+        ramList.removeIf(h->h.getRamId().equals(ramId));
+        ramList.add(ram);
+        laptop.setRam(ramList);
         laptopDAO.updateLaptop(laptop);
     }
 }

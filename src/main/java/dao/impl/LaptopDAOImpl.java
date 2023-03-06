@@ -47,6 +47,7 @@ public class LaptopDAOImpl implements LaptopDAO {
         lap.setModelName(laptop.getModelName());
         lap.setPrice(laptop.getPrice());
         lap.setProcessor(laptop.getProcessor());
+        lap.setRam(laptop.getRam());
         entityManager.merge(lap);
         entityManager.getTransaction().commit();
         entityManager.close();

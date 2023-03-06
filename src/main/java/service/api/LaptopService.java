@@ -1,6 +1,7 @@
 package service.api;
 
 import entity.Laptop;
+import entity.Ram;
 
 public interface LaptopService {
     void saveLaptop(Laptop laptop);
@@ -14,4 +15,6 @@ public interface LaptopService {
     void deleteLaptop(Long lapId);
 
     void changeProcessor(Long lapId, Long newProcessor);
+
+    void changeRam(Ram ram, Long lapId, Long ramId);
 }
