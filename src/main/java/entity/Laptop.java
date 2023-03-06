@@ -32,7 +32,7 @@ public class Laptop {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "lap_id")
     private List<Ram> ram = new ArrayList<>();
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="router_id")
     private WifiRouter wifiRouter;
 

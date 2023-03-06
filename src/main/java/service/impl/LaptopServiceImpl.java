@@ -22,7 +22,6 @@ public class LaptopServiceImpl implements LaptopService {
     private WifiRouterDAO wifiRouterDAO = new WifiRouterDAOImpl();
 
     public void saveLaptop(Laptop laptop) {
-        wifiRouterDAO.saveWifiRouter(laptop.getWifiRouter());
         laptopDAO.saveLaptop(laptop);
     }
 
