@@ -19,6 +19,18 @@ public class LaptopDAOImpl implements LaptopDAO {
         entityManager.close();
     }
 
+    public void saveLaptopList(List<Laptop> laptop){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        for (Laptop lap:laptop) {
+            entityManager.merge(lap);
+        }
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
     public List<Laptop> getAllLaptops() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -48,6 +60,7 @@ public class LaptopDAOImpl implements LaptopDAO {
         lap.setPrice(laptop.getPrice());
         lap.setProcessor(laptop.getProcessor());
         lap.setRam(laptop.getRam());
+        lap.setWifiRouter(laptop.getWifiRouter());
         entityManager.merge(lap);
         entityManager.getTransaction().commit();
         entityManager.close();

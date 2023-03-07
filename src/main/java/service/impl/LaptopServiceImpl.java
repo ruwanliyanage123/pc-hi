@@ -7,6 +7,7 @@ import dao.impl.ProcessorDAOImpl;
 import entity.Laptop;
 import entity.Processor;
 import entity.Ram;
+import entity.WifiRouter;
 import service.api.LaptopService;
 
 import java.util.List;
@@ -17,6 +18,10 @@ public class LaptopServiceImpl implements LaptopService {
 
     public void saveLaptop(Laptop laptop) {
         laptopDAO.saveLaptop(laptop);
+    }
+
+    public void saveLaptopList(List<Laptop> laptop){
+        laptopDAO.saveLaptopList(laptop);
     }
 
     public void getAllLaptops() {
@@ -45,6 +50,14 @@ public class LaptopServiceImpl implements LaptopService {
         Laptop laptop = laptopDAO.getLaptopById(lapId);
         Processor processor = processorDAO.getProcessorById(newProcessor);
         laptop.setProcessor(processor);
+        laptopDAO.updateLaptop(laptop);
+    }
+
+    public void changeSSID(Long lapId){
+        Laptop laptop = laptopDAO.getLaptopById(lapId);
+        WifiRouter wifiRouter = laptop.getWifiRouter();
+        wifiRouter.setSsid("AURA");
+        laptop.setWifiRouter(wifiRouter);
         laptopDAO.updateLaptop(laptop);
     }
 
