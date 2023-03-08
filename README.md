@@ -70,4 +70,6 @@ Need to use class name(Laptop) in the queries as follows.
         @NamedQuery(name = "Laptop.updateGivenLaptop", query = "UPDATE Laptop lap SET lap.brandName = :brand, lap.modelName = :model, lap.serialNumber =           :serial  WHERE lap.lapId= :id")
      })
      
- 
+cascade type can use to update the depenency objects    
+    @ManyToOne(cascade = CascadeType.ALL)
+     
