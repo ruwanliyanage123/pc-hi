@@ -71,5 +71,6 @@ Need to use class name(Laptop) in the queries as follows.
      })
      
 cascade type can use to update the depenency objects    
-    @ManyToOne(cascade = CascadeType.ALL)
+    
+     @ManyToOne(cascade = CascadeType.ALL)
      
