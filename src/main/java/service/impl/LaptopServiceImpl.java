@@ -2,8 +2,10 @@ package service.impl;
 
 import dao.api.LaptopDAO;
 import dao.api.ProcessorDAO;
+import dao.api.WifiRouterDAO;
 import dao.impl.LaptopDAOImpl;
 import dao.impl.ProcessorDAOImpl;
+import dao.impl.WifiRouterDAOImpl;
 import entity.Laptop;
 import entity.Processor;
 import entity.Ram;
@@ -15,12 +17,14 @@ import java.util.List;
 public class LaptopServiceImpl implements LaptopService {
     private LaptopDAO laptopDAO = new LaptopDAOImpl();
     private ProcessorDAO processorDAO = new ProcessorDAOImpl();
+    private WifiRouterDAO wifiRouterDAO = new WifiRouterDAOImpl();
 
     public void saveLaptop(Laptop laptop) {
         laptopDAO.saveLaptop(laptop);
     }
 
-    public void saveLaptopList(List<Laptop> laptop){
+    public void saveLaptopList(List<Laptop> laptop) {
+        wifiRouterDAO.saveWifiRouter(laptop.get(0).getWifiRouter());
         laptopDAO.saveLaptopList(laptop);
     }
 
@@ -53,7 +57,7 @@ public class LaptopServiceImpl implements LaptopService {
         laptopDAO.updateLaptop(laptop);
     }
 
-    public void changeSSID(Long lapId){
+    public void changeSSID(Long lapId) {
         Laptop laptop = laptopDAO.getLaptopById(lapId);
         WifiRouter wifiRouter = laptop.getWifiRouter();
         wifiRouter.setSsid("AURA");
@@ -65,7 +69,7 @@ public class LaptopServiceImpl implements LaptopService {
     public void changeRam(Ram ram, Long lapId, Long ramId) {
         Laptop laptop = laptopDAO.getLaptopById(lapId);
         List<Ram> ramList = laptop.getRam();
-        ramList.removeIf(h->h.getRamId().equals(ramId));
+        ramList.removeIf(h -> h.getRamId().equals(ramId));
         ramList.add(ram);
         laptop.setRam(ramList);
         laptopDAO.updateLaptop(laptop);

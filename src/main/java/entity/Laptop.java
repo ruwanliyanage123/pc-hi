@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "laptop")
 public class Laptop {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "lap_id")
     private Long lapId;
     @Column(name = "model_name")
@@ -33,7 +33,7 @@ public class Laptop {
     @JoinColumn(name = "lap_id")
     private List<Ram> ram = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="router_id")
+    @JoinColumn(name = "router_id")
     private WifiRouter wifiRouter;
 
     public Laptop(Processor processor, List<Ram> ram, String modelName, Double price) {
