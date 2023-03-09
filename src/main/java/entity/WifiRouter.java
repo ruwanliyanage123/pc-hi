@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "wifi")
@@ -17,6 +19,9 @@ public class WifiRouter {
     private String ssid;
     @Column(name = "model_name")
     private String modelName;
+
+    @OneToMany(mappedBy = "wifiRouter")
+    private List<Laptop> laptops;
 
     public WifiRouter(String ssid, String modelName) {
         this.ssid = ssid;

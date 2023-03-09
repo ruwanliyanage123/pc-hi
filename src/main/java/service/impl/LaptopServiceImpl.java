@@ -1,9 +1,11 @@
 package service.impl;
 
 import dao.api.LaptopDAO;
+import dao.api.PrinterDAO;
 import dao.api.ProcessorDAO;
 import dao.api.WifiRouterDAO;
 import dao.impl.LaptopDAOImpl;
+import dao.impl.PrinterDAOImpl;
 import dao.impl.ProcessorDAOImpl;
 import dao.impl.WifiRouterDAOImpl;
 import entity.Laptop;
@@ -18,13 +20,14 @@ public class LaptopServiceImpl implements LaptopService {
     private LaptopDAO laptopDAO = new LaptopDAOImpl();
     private ProcessorDAO processorDAO = new ProcessorDAOImpl();
     private WifiRouterDAO wifiRouterDAO = new WifiRouterDAOImpl();
+    private PrinterDAO printerDAO = new PrinterDAOImpl();
 
     public void saveLaptop(Laptop laptop) {
         laptopDAO.saveLaptop(laptop);
     }
 
     public void saveLaptopList(List<Laptop> laptop) {
-        wifiRouterDAO.saveWifiRouter(laptop.get(0).getWifiRouter());
+        //wifiRouterDAO.saveWifiRouter(laptop.get(0).getWifiRouter());
         laptopDAO.saveLaptopList(laptop);
     }
 

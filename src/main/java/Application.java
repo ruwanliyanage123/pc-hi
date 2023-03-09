@@ -1,18 +1,34 @@
 import entity.Laptop;
+import entity.Printer;
 import entity.Processor;
 import entity.Ram;
 import entity.WifiRouter;
 import service.api.LaptopService;
+import service.api.PrinterService;
 import service.impl.LaptopServiceImpl;
+import service.impl.PrinterServiceImpl;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Application {
     private static LaptopService laptopService = new LaptopServiceImpl();
+    private static PrinterService printerService = new PrinterServiceImpl();
 
     public static void main(String[] args) {
-        saveLaptopList();
+        savePrinter();
+    }
+
+    private static void savePrinter() {
+        Laptop laptop1 = new Laptop("Dell - 1234", 15000.0);
+        Laptop laptop2 = new Laptop("Dell - 4567", 15000.0);
+        Set<Laptop> laptops = new HashSet<>();
+        laptops.add(laptop1);
+        laptops.add(laptop2);
+        Printer printer = new Printer("print - 001", laptops);
+        printerService.savePrinter(printer);
     }
 
     private static void saveLaptop() {
@@ -21,7 +37,14 @@ public class Application {
         List<Ram> ramList = Arrays.asList(ram1, ram2);
         Processor processor = new Processor("Intel i7 DDR8", 25000.0);
         WifiRouter wifiRouter = new WifiRouter("JWR", "Huawei");
-        Laptop lap = new Laptop(wifiRouter, processor, ramList, "Dell i7 -80 DDR8", 25000.0);
+
+        Printer printer1 = new Printer("print - 001");
+        Printer printer2 = new Printer("print - 002");
+        Set<Printer> printers = new HashSet<>();
+        printers.add(printer1);
+        printers.add(printer2);
+
+        Laptop lap = new Laptop(wifiRouter, processor, ramList, printers, "Dell i7 -80 DDR8", 25000.0);
         laptopService.saveLaptop(lap);
     }
 

@@ -8,12 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "laptop")
@@ -35,6 +38,17 @@ public class Laptop {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "router_id")
     private WifiRouter wifiRouter;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "laptop_printer", joinColumns = @JoinColumn(name = "lap_id"), inverseJoinColumns = @JoinColumn(name = "printer_id"))
+    private Set<Printer> printers;
+
+    public Laptop() {
+    }
+
+    public Laptop(String modelName, Double price) {
+        this.modelName = modelName;
+        this.price = price;
+    }
 
     public Laptop(Processor processor, List<Ram> ram, String modelName, Double price) {
         this.processor = processor;
@@ -51,7 +65,13 @@ public class Laptop {
         this.ram = ram;
     }
 
-    public Laptop() {
+    public Laptop(WifiRouter wifiRouter, Processor processor, List<Ram> ram, Set<Printer> printers, String modelName, Double price) {
+        this.wifiRouter = wifiRouter;
+        this.processor = processor;
+        this.modelName = modelName;
+        this.printers = printers;
+        this.price = price;
+        this.ram = ram;
     }
 
     public Long getLapId() {
@@ -104,5 +124,13 @@ public class Laptop {
 
     public void setWifiRouter(WifiRouter wifiRouter) {
         this.wifiRouter = wifiRouter;
+    }
+
+    public Set<Printer> getPrinters() {
+        return printers;
+    }
+
+    public void setPrinters(Set<Printer> printers) {
+        this.printers = printers;
     }
 }
