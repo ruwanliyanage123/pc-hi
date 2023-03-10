@@ -74,3 +74,12 @@ cascade type can use to update the depenency objects
     
      @ManyToOne(cascade = CascadeType.ALL)
      
+To maintain the ManyToMany relationship, we can use jointable for it
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "laptop_printer", joinColumns = @JoinColumn(name = "lap_id"), inverseJoinColumns = @JoinColumn(name = "printer_id"))
+    private Set<Printer> printers;  
+    
+    @ManyToMany(mappedBy = "printers")
+    private Set<Laptop> laptops;
+     
