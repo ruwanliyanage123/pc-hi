@@ -82,4 +82,6 @@ To maintain the ManyToMany relationship, we can use jointable for it
     
     @ManyToMany(mappedBy = "printers")
     private Set<Laptop> laptops;
+    
+Mapped by will help to handover the ownership
      
